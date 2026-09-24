@@ -2,1815 +2,1882 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alisha's Daily Checklist</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#f8dff0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Alisha's Checklist">
+
+<title>🌸 Alisha's Checklist</title>
+
+<!--
+  Self-contained app icon.
+  This is an SVG created inside the HTML.
+  No external image, website or image server is contacted.
+-->
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23f9d7e9'/%3E%3Cstop offset='.52' stop-color='%23e8ddfa'/%3E%3Cstop offset='1' stop-color='%23d7ecfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23bg)'/%3E%3Ccircle cx='90' cy='93' r='53' fill='%23fff9fc' opacity='.9'/%3E%3Cpath d='M43 75 Q90 25 137 75' fill='none' stroke='%23f4b7d7' stroke-width='9' stroke-linecap='round'/%3E%3Cpath d='M61 66 Q73 47 90 64 Q107 47 119 66' fill='none' stroke='%239b7bd3' stroke-width='7' stroke-linecap='round'/%3E%3Cellipse cx='90' cy='98' rx='36' ry='39' fill='%23f3c9ae'/%3E%3Cpath d='M56 94 Q57 55 90 52 Q123 55 124 94 Q115 75 90 75 Q65 75 56 94' fill='%235c4965'/%3E%3Ccircle cx='77' cy='101' r='3.5' fill='%2351445c'/%3E%3Ccircle cx='103' cy='101' r='3.5' fill='%2351445c'/%3E%3Cpath d='M84 113 Q90 118 96 113' fill='none' stroke='%23d77d9d' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M67 63 Q55 49 66 39 Q78 45 83 58' fill='%23ef9fc5'/%3E%3Cpath d='M113 63 Q125 49 114 39 Q102 45 97 58' fill='%23ef9fc5'/%3E%3Cpath d='M62 138 Q90 119 118 138 L126 158 L54 158 Z' fill='%23b99be8'/%3E%3Ccircle cx='35' cy='45' r='5' fill='%23fff'/%3E%3Ccircle cx='145' cy='48' r='4' fill='%23fff'/%3E%3Cpath d='M30 122 l4 9 9 4-9 4-4 9-4-9-9-4 9-4z' fill='%23f4b7d7'/%3E%3Cpath d='M148 119 l4 9 9 4-9 4-4 9-4-9-9-4 9-4z' fill='%23a98bdc'/%3E%3Cpath d='M90 25 l2 5 5 2-5 2-2 5-2-5-5-2 5-2z' fill='%23fff'/%3E%3C/svg%3E">
+
+<link
+  rel="apple-touch-icon"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='42' fill='%23eedff7'/%3E%3Ccircle cx='90' cy='95' r='53' fill='%23fff8fc'/%3E%3Cellipse cx='90' cy='99' rx='36' ry='39' fill='%23f3c9ae'/%3E%3Cpath d='M56 94 Q57 55 90 52 Q123 55 124 94 Q115 75 90 75 Q65 75 56 94' fill='%235c4965'/%3E%3Cpath d='M67 63 Q55 49 66 39 Q78 45 83 58' fill='%23ef9fc5'/%3E%3Cpath d='M113 63 Q125 49 114 39 Q102 45 97 58' fill='%23ef9fc5'/%3E%3Ccircle cx='77' cy='101' r='3.5' fill='%2351445c'/%3E%3Ccircle cx='103' cy='101' r='3.5' fill='%2351445c'/%3E%3Cpath d='M84 113 Q90 118 96 113' fill='none' stroke='%23d77d9d' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M62 138 Q90 119 118 138 L126 158 L54 158 Z' fill='%23b99be8'/%3E%3C/svg%3E">
+
 <style>
+:root {
+  --pink: #f4b7d7;
+  --pink-light: #fff1f7;
+  --lavender: #b9a0e8;
+  --lavender-light: #f1ebff;
+  --blue-light: #e5f4ff;
+  --mint-light: #e7f8f1;
+  --yellow-light: #fff7d9;
+  --text: #55485d;
+  --muted: #8b7c91;
+  --white: rgba(255,255,255,.94);
+  --green: #64b889;
+  --red: #df7373;
+  --shadow: 0 10px 30px rgba(115, 87, 126, .12);
+}
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
+
+html {
+  min-height: 100%;
+  background: #f9eff8;
+}
+
 body {
   margin: 0;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  color: #51445f;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 8% 16%, rgba(255,255,255,.95) 0 45px, transparent 46px),
-    radial-gradient(circle at 92% 18%, rgba(255,255,255,.8) 0 42px, transparent 43px),
-    linear-gradient(135deg, #fff8fc, #f6f0ff 45%, #effaff 100%);
-  position: relative;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--text);
   overflow-x: hidden;
+
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255,255,255,.85) 0 4px, transparent 5px),
+    radial-gradient(circle at 90% 18%, rgba(255,255,255,.8) 0 5px, transparent 6px),
+    linear-gradient(135deg, #fcecf5 0%, #eee9fb 48%, #e8f5fc 100%);
 }
-/* Soft decorative background */
-body::before {
-  content: "☁️     ✨     🌈     🦋     🌸     💕     ⭐     🌷     ☁️";
+
+/* Decorative background */
+
+.background-art {
   position: fixed;
-  top: 8px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 23px;
-  letter-spacing: 5px;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  width: 130px;
+  height: 45px;
+  border-radius: 50px;
+  background: rgba(255,255,255,.58);
+  filter: blur(.2px);
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.cloud::before {
+  width: 58px;
+  height: 58px;
+  left: 20px;
+  top: -28px;
+}
+
+.cloud::after {
+  width: 72px;
+  height: 72px;
+  right: 17px;
+  top: -38px;
+}
+
+.cloud.one {
+  top: 110px;
+  left: -45px;
+}
+
+.cloud.two {
+  top: 260px;
+  right: -60px;
+  transform: scale(.8);
+}
+
+.star {
+  position: absolute;
+  font-size: 25px;
+  opacity: .62;
+}
+
+.star.s1 { top: 100px; left: 8%; }
+.star.s2 { top: 210px; right: 8%; }
+.star.s3 { top: 460px; left: 4%; }
+.star.s4 { top: 650px; right: 5%; }
+
+.heart {
+  position: absolute;
+  font-size: 28px;
+  opacity: .48;
+}
+
+.heart.h1 { top: 145px; right: 12%; }
+.heart.h2 { top: 520px; left: 7%; }
+
+.butterfly {
+  position: absolute;
+  top: 175px;
+  left: 12%;
+  font-size: 30px;
+  opacity: .55;
+  transform: rotate(-10deg);
+}
+
+.flower {
+  position: absolute;
+  font-size: 28px;
   opacity: .45;
-  pointer-events: none;
-  z-index: 0;
 }
-body::after {
-  content: "🌸     💜     ⭐     🩷     🌼     🦋     ✨     💕";
-  position: fixed;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 21px;
-  letter-spacing: 7px;
-  opacity: .32;
-  pointer-events: none;
-  z-index: 0;
+
+.flower.f1 { bottom: 90px; left: 5%; }
+.flower.f2 { bottom: 170px; right: 5%; }
+
+.rainbow {
+  position: absolute;
+  top: 25px;
+  right: -45px;
+  width: 170px;
+  height: 85px;
+  border-radius: 170px 170px 0 0;
+  border: 10px solid rgba(245,182,211,.28);
+  border-bottom: 0;
+  transform: rotate(10deg);
 }
+
+.rainbow::before {
+  content: "";
+  position: absolute;
+  inset: 13px 13px 0;
+  border-radius: 150px 150px 0 0;
+  border: 10px solid rgba(183,159,231,.25);
+  border-bottom: 0;
+}
+
+.rainbow::after {
+  content: "";
+  position: absolute;
+  inset: 26px 26px 0;
+  border-radius: 130px 130px 0 0;
+  border: 10px solid rgba(165,215,237,.28);
+  border-bottom: 0;
+}
+
+/* Main */
+
 .app {
-  width: min(950px, 94%);
-  margin: 35px auto;
   position: relative;
   z-index: 1;
+  width: min(960px, 94%);
+  margin: 0 auto;
+  padding: 28px 0 60px;
 }
-/* =====================================================
-   HEADER
-===================================================== */
-.header-wrap {
+
+/* Header */
+
+.header {
   position: relative;
-  margin-bottom: 18px;
-}
-header {
-  background: rgba(255,255,255,.92);
-  border-radius: 28px;
-  padding: 25px 22px;
+  background: var(--white);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  padding: 25px 22px 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(121, 91, 150, .12);
-  border: 2px solid rgba(255,255,255,.95);
-  position: relative;
-  z-index: 2;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-header h1 {
-  margin: 0;
-  font-size: clamp(27px, 5vw, 42px);
-  color: #9b65c5;
-}
-header p {
-  margin: 7px 0 0;
-  color: #8c8195;
-  font-size: 15px;
-}
-/* Decorations sitting visibly around the header */
-.header-decoration {
-  position: absolute;
-  z-index: 4;
-  pointer-events: none;
-  font-size: 29px;
-  filter: drop-shadow(0 3px 3px rgba(100,70,120,.12));
-}
-.decor-rainbow {
-  top: -17px;
-  left: 5%;
-}
-.decor-butterfly {
-  top: 8px;
-  right: 7%;
-}
-.decor-flower-left {
-  bottom: -12px;
-  left: 13%;
-}
-.decor-flower-right {
-  bottom: -12px;
-  right: 14%;
-}
-.decor-star-left {
-  top: 43px;
-  left: -13px;
-  font-size: 25px;
-}
-.decor-star-right {
-  top: 48px;
-  right: -13px;
-  font-size: 25px;
-}
-.decor-heart {
-  top: -7px;
-  right: 23%;
-  font-size: 20px;
-}
-/* =====================================================
-   TABS
-===================================================== */
-.tabs {
+
+.app-icon {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 8px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #f8d9e9, #e8ddfa, #dceffc);
+  box-shadow:
+    0 8px 18px rgba(134, 104, 151, .16),
+    inset 0 1px 1px rgba(255,255,255,.9);
   display: flex;
-  gap: 10px;
-  margin-bottom: 18px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+
+.app-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  margin: 4px 0 2px;
+  font-size: clamp(25px, 6vw, 38px);
+  color: #755a80;
+  letter-spacing: -.5px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.date {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #92799b;
+}
+
+/* Tabs */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
 .tab {
-  flex: 1;
-  border: none;
-  padding: 15px 10px;
+  border: 0;
+  padding: 13px 8px;
   border-radius: 18px;
-  background: rgba(255,255,255,.82);
-  color: #77677f;
-  font-size: 16px;
-  font-weight: bold;
+  background: rgba(255,255,255,.7);
+  color: #806d87;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(100,80,120,.08);
-  transition: .2s;
+  font-size: 14px;
+  transition: .2s ease;
 }
-.tab:hover {
-  transform: translateY(-2px);
-}
+
 .tab.active {
-  background: linear-gradient(135deg, #f6c8e7, #d9c8fa, #c8eafa);
-  color: #5c4a68;
+  background: linear-gradient(135deg, #f7c9df, #d9cef4);
+  color: #614e6b;
+  box-shadow: 0 6px 16px rgba(143, 111, 157, .13);
 }
-/* =====================================================
-   PAGES
-===================================================== */
+
+/* Page */
+
 .page {
   display: none;
+  margin-top: 18px;
 }
+
 .page.active {
   display: block;
 }
-.card {
-  background: rgba(255,255,255,.91);
-  border-radius: 26px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 10px 30px rgba(100,80,120,.10);
-  border: 2px solid rgba(255,255,255,.92);
+
+/* Progress summary */
+
+.summary {
+  background: var(--white);
+  border-radius: 25px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
 }
-/* =====================================================
-   TODAY PROGRESS
-===================================================== */
-.progress-card {
-  padding: 20px;
-  background: linear-gradient(135deg, #fff1f8, #f2edff, #edfbff);
-}
-.date {
-  text-align: center;
-  color: #927aa1;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-.progress-top {
+
+.summary-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
 }
-.progress-number {
-  font-size: 34px;
-  font-weight: bold;
-  color: #9a68c4;
+
+.summary-title {
+  font-weight: 800;
+  font-size: 18px;
 }
-.progress-stars {
-  font-size: 24px;
-  letter-spacing: 3px;
+
+.summary-stars {
+  font-size: 15px;
+  font-weight: 800;
+  color: #9a709c;
   white-space: nowrap;
 }
-.progress-bar {
-  width: 100%;
-  height: 16px;
-  background: #eee7f4;
+
+.progress-track {
+  height: 15px;
   border-radius: 20px;
+  background: #eee9f2;
   overflow: hidden;
-  margin: 15px 0 10px;
+  margin-top: 14px;
 }
+
 .progress-fill {
   height: 100%;
-  width: 0%;
-  border-radius: 20px;
+  width: 0;
+  border-radius: inherit;
   background: linear-gradient(
     90deg,
-    #ffb7d9,
-    #c7b2f5,
-    #9fdff1,
-    #b8e8b0
+    #f4a9cf,
+    #c9a8ec,
+    #9fd6ef,
+    #a9dfc6
   );
-  transition: width .35s ease;
+  transition: width .3s ease;
 }
+
+.percent {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: #775b82;
+  margin-top: 10px;
+}
+
 .encouragement {
   text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: #80678d;
+  color: #88738f;
+  font-size: 14px;
+  margin-top: 3px;
 }
-/* =====================================================
-   SELECT / CLEAR BUTTONS
-===================================================== */
-.control-buttons {
+
+/* Action buttons */
+
+.action-row {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
-.control-btn {
-  border: none;
-  border-radius: 15px;
-  padding: 11px 18px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: bold;
+
+.action-btn {
+  flex: 1;
+  border: 0;
+  border-radius: 16px;
+  padding: 12px;
+  font-weight: 800;
   cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 5px 12px rgba(100,80,120,.08);
+  color: #68566f;
+  background: #f3ebfa;
 }
-.control-btn:hover {
-  transform: translateY(-2px);
+
+.action-btn.clear {
+  background: #fff0f3;
+  color: #9b656f;
 }
-.select-btn {
-  background: linear-gradient(135deg, #d9f4df, #d8f2ef);
-  color: #52785d;
+
+.action-btn:active,
+.tab:active,
+.view-btn:active,
+.reward-option:active {
+  transform: scale(.98);
 }
-.clear-btn {
-  background: linear-gradient(135deg, #ffe0e8, #f5e1f8);
-  color: #9a6879;
+
+/* Checklist sections */
+
+.section {
+  background: var(--white);
+  border-radius: 25px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
 }
-/* =====================================================
-   TASKS
-===================================================== */
+
+.section:nth-child(2) {
+  background: linear-gradient(135deg, rgba(255,255,255,.96), #fff4fa);
+}
+
+.section:nth-child(3) {
+  background: linear-gradient(135deg, rgba(255,255,255,.96), #f5f0ff);
+}
+
+.section:nth-child(4) {
+  background: linear-gradient(135deg, rgba(255,255,255,.96), #eef9ff);
+}
+
 .section-title {
-  margin: 8px 0 13px;
-  font-size: 21px;
-  color: #9066b4;
-}
-.task-list {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.section-title .emoji {
+  font-size: 25px;
+}
+
+.task-list {
+  display: grid;
   gap: 9px;
 }
+
 .task {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 13px 14px;
-  border-radius: 17px;
-  background: #fffafd;
-  border: 1.5px solid #f0e4f5;
+  padding: 13px 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(232,222,238,.8);
   cursor: pointer;
-  transition: .2s;
   user-select: none;
+  transition: .18s ease;
 }
+
 .task:hover {
-  transform: translateX(2px);
-  background: #fff5fb;
+  background: #fff;
 }
-.task.completed {
-  background: #effbf0;
-  border-color: #ccebcf;
+
+.task.checked {
+  background: linear-gradient(
+    90deg,
+    rgba(230,249,240,.9),
+    rgba(244,239,255,.9)
+  );
 }
-.task-check {
+
+.checkbox {
   width: 27px;
   height: 27px;
   min-width: 27px;
   border-radius: 9px;
-  border: 2px solid #cbb9d7;
-  background: white;
+  border: 2px solid #c9b8d1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 19px;
-  font-weight: bold;
+  background: white;
   color: white;
+  font-size: 17px;
+  font-weight: 900;
 }
-.task.completed .task-check {
-  background: #8ed39b;
-  border-color: #8ed39b;
+
+.task.checked .checkbox {
+  background: linear-gradient(135deg, #78c99b, #78b8dc);
+  border-color: transparent;
 }
+
 .task-text {
-  font-size: 16px;
-  line-height: 1.3;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 650;
+  color: #63566a;
 }
-.task.completed .task-text {
+
+.task.checked .task-text {
   text-decoration: line-through;
-  color: #819181;
+  opacity: .65;
 }
-.star-summary {
-  text-align: center;
-  margin-top: 18px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #8f68ad;
+
+/* Star */
+
+.star-badge {
+  margin-left: auto;
+  font-size: 17px;
+  opacity: .3;
 }
-/* =====================================================
-   PROGRESS PAGE
-===================================================== */
+
+.task.checked .star-badge {
+  opacity: 1;
+}
+
+/* Progress page */
+
 .journey {
-  text-align: center;
+  background: var(--white);
+  border-radius: 25px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
 }
-.journey-title {
-  font-size: 22px;
-  font-weight: bold;
-  color: #9365b6;
-  margin-bottom: 15px;
+
+.journey h2,
+.reward-box h2 {
+  margin: 0 0 15px;
+  font-size: 20px;
 }
-.journey-row {
+
+.star-journey {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 7px;
+  overflow-x: auto;
 }
+
 .journey-day {
-  padding: 12px 4px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #fff7fc, #f2edff);
+  min-width: 75px;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 17px;
+  background: linear-gradient(180deg, #fff5fa, #f1ecff);
 }
-.journey-day-name {
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+
 .journey-star {
   font-size: 30px;
-  line-height: 1.1;
+  line-height: 1;
 }
+
+.journey-day-name {
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #7e6b84;
+}
+
 .journey-count {
-  font-size: 13px;
-  font-weight: bold;
-  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #9a789e;
 }
-.daily-card {
-  border-radius: 22px;
+
+.progress-card {
+  background: var(--white);
+  border-radius: 24px;
   padding: 18px;
   margin-bottom: 13px;
-  background: linear-gradient(135deg, #fff8fb, #f8f2ff, #f0fbff);
-  border: 2px solid white;
-  box-shadow: 0 7px 20px rgba(100,80,120,.08);
+  box-shadow: var(--shadow);
 }
-.daily-header {
+
+.progress-card:nth-child(odd) {
+  background: linear-gradient(135deg, #fff, #fff3f9);
+}
+
+.progress-card:nth-child(even) {
+  background: linear-gradient(135deg, #fff, #f3efff);
+}
+
+.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
 }
-.daily-date {
-  font-weight: bold;
-  color: #80678d;
+
+.card-date {
+  font-weight: 900;
+  font-size: 17px;
 }
-.daily-status {
-  font-size: 14px;
-  font-weight: bold;
+
+.card-stars {
+  font-weight: 900;
+  color: #8e7097;
+  white-space: nowrap;
 }
-.status-done {
-  color: #4d9b5b;
+
+.card-percent {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 900;
+  color: #765b80;
 }
-.status-keep {
-  color: #d06a6a;
-}
-.daily-middle {
-  display: flex;
+
+.status {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: 12px;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 900;
+  margin-top: 4px;
 }
-.daily-stars {
-  font-size: 22px;
-  letter-spacing: 2px;
+
+.status.done {
+  color: var(--green);
 }
-.daily-score {
-  font-size: 20px;
-  font-weight: bold;
-  color: #9366b5;
+
+.status.keep {
+  color: var(--red);
 }
-.daily-message {
-  margin-top: 9px;
-  color: #7d7182;
-  font-size: 14px;
+
+.card-message {
+  margin-top: 7px;
+  color: #86738b;
+  font-size: 13px;
 }
+
 .view-btn {
-  border: none;
-  border-radius: 13px;
-  padding: 9px 15px;
-  background: linear-gradient(135deg, #e5cef6, #ccecf7);
-  color: #62516d;
-  font-weight: bold;
+  margin-top: 13px;
+  border: 0;
+  border-radius: 14px;
+  background: #eee7f9;
+  color: #6c5a75;
+  font-weight: 800;
+  padding: 10px 16px;
   cursor: pointer;
 }
-/* =====================================================
-   REWARD
-===================================================== */
-.reward-intro {
-  text-align: center;
-  color: #7e7085;
-  margin-bottom: 18px;
+
+/* Reward */
+
+.reward-box {
+  background: var(--white);
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: var(--shadow);
 }
+
+.reward-options {
+  display: grid;
+  gap: 10px;
+}
+
 .reward-option {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 15px;
-  margin-bottom: 10px;
+  gap: 11px;
+  padding: 14px;
   border-radius: 17px;
-  background: #fffafd;
-  border: 2px solid #f0e5f5;
+  background: #faf7fd;
+  border: 1px solid #eee7f4;
   cursor: pointer;
+  font-weight: 700;
+  color: #65576c;
 }
-.reward-option:hover {
-  background: #fff5fb;
-}
+
 .reward-option input {
+  accent-color: #ad8bda;
   width: 19px;
   height: 19px;
-  accent-color: #a678c6;
 }
-.reward-name {
-  font-weight: bold;
-  font-size: 16px;
-}
+
 .selected-reward {
-  margin-top: 20px;
+  margin-top: 17px;
+  padding: 15px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff0f7, #f0ebff);
   text-align: center;
-  padding: 18px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #fff0f7, #eee8ff, #eafaff);
-  font-size: 18px;
-  font-weight: bold;
-  color: #805f9b;
+  font-weight: 900;
+  color: #735c7d;
 }
+
 .weekly-progress {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 18px;
+  background: #f4fbf7;
   text-align: center;
-  margin-top: 18px;
-  font-weight: bold;
-  color: #77677f;
 }
-/* =====================================================
-   MODAL / VIEW
-===================================================== */
-.modal {
-  display: none;
+
+.weekly-progress strong {
+  display: block;
+  font-size: 23px;
+  color: #659b7d;
+}
+
+/* Modal */
+
+.modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(69,55,79,.45);
-  z-index: 100;
-  padding: 20px;
-  overflow-y: auto;
-}
-.modal.show {
-  display: flex;
+  background: rgba(62, 47, 69, .38);
+  display: none;
   align-items: center;
   justify-content: center;
+  padding: 18px;
+  z-index: 20;
 }
-.modal-content {
-  width: min(700px, 100%);
-  max-height: 90vh;
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  width: min(650px, 100%);
+  max-height: 88vh;
   overflow-y: auto;
-  background: white;
+  background: #fff;
   border-radius: 28px;
-  padding: 23px;
-  box-shadow: 0 20px 50px rgba(50,40,60,.25);
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(54,39,61,.25);
 }
+
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
-  margin-bottom: 18px;
+  align-items: center;
+  margin-bottom: 14px;
 }
-.modal-header h2 {
-  margin: 0;
-  color: #9065b3;
+
+.modal-title {
+  font-size: 21px;
+  font-weight: 900;
+  color: #715a78;
 }
+
 .close-btn {
-  border: none;
-  background: #f5e9f8;
+  border: 0;
+  background: #f3edf7;
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  font-size: 21px;
   cursor: pointer;
+  font-size: 18px;
+  color: #735e7a;
 }
-.view-section {
-  margin-bottom: 20px;
+
+.modal-section {
+  margin-top: 15px;
 }
-.view-section h3 {
-  color: #9a6abd;
-  margin-bottom: 9px;
+
+.modal-section h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
 }
-.view-task {
+
+.modal-task {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 5px;
-  border-bottom: 1px solid #f1eaf3;
-  font-size: 15px;
-}
-.view-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 8px;
-  border: 2px solid #d1c5d7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.view-task.done .view-check {
-  background: #8ed39b;
-  border-color: #8ed39b;
-  color: white;
-  font-weight: bold;
-}
-/* =====================================================
-   FOOTER
-===================================================== */
-.footer {
-  text-align: center;
-  padding: 15px;
-  color: #9a8ba1;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  margin-bottom: 5px;
+  background: #faf8fb;
   font-size: 13px;
 }
-/* =====================================================
-   MOBILE
-===================================================== */
+
+.modal-check {
+  font-size: 17px;
+}
+
+.modal-check.complete {
+  color: var(--green);
+}
+
+.modal-check.incomplete {
+  color: #c9becd;
+}
+
+/* Footer */
+
+.footer {
+  text-align: center;
+  color: #a08fa5;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+/* Mobile */
+
 @media (max-width: 650px) {
   .app {
     width: 94%;
-    margin: 30px auto 22px;
+    padding-top: 16px;
   }
-  header {
-    padding: 24px 17px;
+
+  .header {
+    padding: 20px 15px 17px;
+    border-radius: 25px;
   }
-  header h1 {
-    font-size: 29px;
+
+  .app-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 21px;
   }
-  .header-decoration {
-    font-size: 24px;
-  }
-  .decor-rainbow {
-    top: -14px;
-    left: 2%;
-  }
-  .decor-butterfly {
-    top: 4px;
-    right: 2%;
-  }
-  .decor-star-left,
-  .decor-star-right {
-    display: none;
-  }
-  .decor-heart {
-    right: 20%;
-  }
-  .tabs {
-    gap: 6px;
-  }
+
   .tab {
+    font-size: 12px;
     padding: 12px 5px;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .task {
+    padding: 12px 10px;
+  }
+
+  .task-text {
     font-size: 14px;
   }
-  .progress-top {
-    flex-direction: column;
-    align-items: center;
-  }
-  .journey-row {
-    gap: 4px;
-  }
-  .journey-day {
-    padding: 9px 2px;
-  }
-  .journey-star {
-    font-size: 24px;
-  }
-  .journey-day-name {
-    font-size: 11px;
-  }
-  .daily-middle {
-    flex-wrap: wrap;
-  }
-  .control-buttons {
-    gap: 8px;
-  }
-  .control-btn {
-    flex: 1;
-    padding: 11px 8px;
+
+  .star-journey {
+    grid-template-columns: repeat(7, 75px);
   }
 }
 </style>
 </head>
+
 <body>
-<div class="app">
-  <!-- HEADER WITH VISIBLE DECORATIONS -->
-  <div class="header-wrap">
-    <div class="header-decoration decor-rainbow">🌈</div>
-    <div class="header-decoration decor-butterfly">🦋</div>
-    <div class="header-decoration decor-flower-left">🌸</div>
-    <div class="header-decoration decor-flower-right">🌷</div>
-    <div class="header-decoration decor-star-left">✨</div>
-    <div class="header-decoration decor-star-right">⭐</div>
-    <div class="header-decoration decor-heart">💕</div>
-    <header>
-      <h1>🌈 Alisha's Daily Checklist 🌸</h1>
-      <p>Little steps every day make a big difference! 💕</p>
-    </header>
-  </div>
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab active" onclick="showPage('today', this)">
-      🌸 TODAY
-    </button>
-    <button class="tab" onclick="showPage('progress', this)">
-      ⭐ PROGRESS
-    </button>
-    <button class="tab" onclick="showPage('reward', this)">
-      🎁 REWARD
-    </button>
-  </div>
-  <!-- ===================================================
-       TODAY
-  ==================================================== -->
-  <section id="today" class="page active">
-    <div class="card progress-card">
-      <div class="date" id="todayDate"></div>
-      <div class="progress-top">
-        <div class="progress-number" id="todayPercentage">
-          0%
-        </div>
-        <div class="progress-stars" id="todayStars"></div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="encouragement" id="todayMessage">
-        Let's get started! 🌸
-      </div>
-    </div>
-    <!-- SELECT ALL / CLEAR ALL -->
-    <div class="control-buttons">
-      <button
-        class="control-btn select-btn"
-        onclick="selectAllTasks()"
-      >
-        ☑️ SELECT ALL
-      </button>
-      <button
-        class="control-btn clear-btn"
-        onclick="clearAllTasks()"
-      >
-        ○ CLEAR ALL
-      </button>
-    </div>
-    <!-- BEFORE SCHOOL -->
-    <div class="card">
-      <div class="section-title">
-        🌅 BEFORE SCHOOL
-      </div>
-      <div
-        class="task-list"
-        id="beforeSchoolTasks"
-      ></div>
-    </div>
-    <!-- AFTER SCHOOL -->
-    <div class="card">
-      <div class="section-title">
-        🏡 AFTER SCHOOL
-      </div>
-      <div
-        class="task-list"
-        id="afterSchoolTasks"
-      ></div>
-    </div>
-    <!-- BEFORE BED -->
-    <div class="card">
-      <div class="section-title">
-        🌙 BEFORE BED
-      </div>
-      <div
-        class="task-list"
-        id="beforeBedTasks"
-      ></div>
-    </div>
-    <div class="card star-summary" id="starSummary">
-      ⭐ 0 / 37 Stars
-    </div>
-  </section>
-  <!-- ===================================================
-       PROGRESS
-  ==================================================== -->
-  <section id="progress" class="page">
-    <div class="card journey">
-      <div class="journey-title">
-        ⭐ 7-Day Star Journey ⭐
-      </div>
-      <div
-        class="journey-row"
-        id="journeyRow"
-      ></div>
-    </div>
-    <div class="card">
-      <div class="section-title">
-        🌸 Daily Progress
-      </div>
-      <div id="dailyProgressList"></div>
-    </div>
-  </section>
-  <!-- ===================================================
-       REWARD
-  ==================================================== -->
-  <section id="reward" class="page">
-    <div class="card">
-      <div class="section-title">
-        🎁 Choose Your Reward
-      </div>
-      <div class="reward-intro">
-        Pick something special to work towards! 💕
-      </div>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Movie Night"
-        >
-        <span class="reward-name">
-          🎬 Movie Night
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Ice Cream Date"
-        >
-        <span class="reward-name">
-          🍦 Ice Cream Date
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Special Family Outing"
-        >
-        <span class="reward-name">
-          🌈 Special Family Outing
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Explore a New Place"
-        >
-        <span class="reward-name">
-          🗺️ Explore a New Place
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Weekend Getaway"
-        >
-        <span class="reward-name">
-          🏖️ Weekend Getaway
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="Special Parent–Child Day"
-        >
-        <span class="reward-name">
-          💖 Special Parent–Child Day
-        </span>
-      </label>
-      <label class="reward-option">
-        <input
-          type="radio"
-          name="reward"
-          value="My Own Reward"
-        >
-        <span class="reward-name">
-          ✨ My Own Reward
-        </span>
-      </label>
-      <div
-        class="selected-reward"
-        id="selectedReward"
-      >
-        No reward selected yet 🌸
-      </div>
-      <div
-        class="weekly-progress"
-        id="weeklyProgress"
-      >
-        This week's progress: 0 / 259 stars
-      </div>
-    </div>
-  </section>
-  <div class="footer">
-    Made with love for Alisha 💕
-  </div>
+
+<div class="background-art" aria-hidden="true">
+  <div class="cloud one"></div>
+  <div class="cloud two"></div>
+
+  <div class="star s1">✦</div>
+  <div class="star s2">✧</div>
+  <div class="star s3">✦</div>
+  <div class="star s4">✧</div>
+
+  <div class="heart h1">♡</div>
+  <div class="heart h2">♥</div>
+
+  <div class="butterfly">🦋</div>
+
+  <div class="flower f1">🌸</div>
+  <div class="flower f2">🌷</div>
+
+  <div class="rainbow"></div>
 </div>
-<!-- =====================================================
-     VIEW MODAL
-====================================================== -->
-<div
-  class="modal"
-  id="viewModal"
->
-  <div class="modal-content">
+
+<main class="app">
+
+<header class="header">
+
+  <div class="app-icon" aria-label="Alisha's Checklist icon">
+    <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="iconBg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f9d7e9"/>
+          <stop offset=".5" stop-color="#e8ddfa"/>
+          <stop offset="1" stop-color="#d7ecfa"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="180" height="180" rx="42" fill="url(#iconBg)"/>
+
+      <circle cx="90" cy="93" r="53"
+              fill="#fff9fc"
+              opacity=".9"/>
+
+      <path d="M43 75 Q90 25 137 75"
+            fill="none"
+            stroke="#f4b7d7"
+            stroke-width="9"
+            stroke-linecap="round"/>
+
+      <path d="M61 66 Q73 47 90 64 Q107 47 119 66"
+            fill="none"
+            stroke="#9b7bd3"
+            stroke-width="7"
+            stroke-linecap="round"/>
+
+      <ellipse cx="90" cy="98" rx="36" ry="39"
+               fill="#f3c9ae"/>
+
+      <path d="M56 94
+               Q57 55 90 52
+               Q123 55 124 94
+               Q115 75 90 75
+               Q65 75 56 94"
+            fill="#5c4965"/>
+
+      <circle cx="77" cy="101" r="3.5" fill="#51445c"/>
+      <circle cx="103" cy="101" r="3.5" fill="#51445c"/>
+
+      <path d="M84 113 Q90 118 96 113"
+            fill="none"
+            stroke="#d77d9d"
+            stroke-width="3.5"
+            stroke-linecap="round"/>
+
+      <path d="M67 63 Q55 49 66 39 Q78 45 83 58"
+            fill="#ef9fc5"/>
+
+      <path d="M113 63 Q125 49 114 39 Q102 45 97 58"
+            fill="#ef9fc5"/>
+
+      <path d="M62 138 Q90 119 118 138 L126 158 L54 158 Z"
+            fill="#b99be8"/>
+
+      <path d="M30 122 l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"
+            fill="#f4b7d7"/>
+
+      <path d="M148 119 l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"
+            fill="#a98bdc"/>
+
+      <path d="M90 25 l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"
+            fill="#fff"/>
+    </svg>
+  </div>
+
+  <h1>🌸 Alisha's Checklist</h1>
+
+  <p class="subtitle">
+    Learn • Play • Shine • Grow
+  </p>
+
+  <div class="date" id="todayDate"></div>
+
+  <nav class="tabs" aria-label="Main navigation">
+    <button class="tab active" data-page="today">🌸 TODAY</button>
+    <button class="tab" data-page="progress">⭐ PROGRESS</button>
+    <button class="tab" data-page="reward">🎁 REWARD</button>
+  </nav>
+
+</header>
+
+<!-- TODAY -->
+
+<section class="page active" id="today">
+
+  <div class="summary">
+
+    <div class="summary-top">
+      <div class="summary-title">Today's Progress</div>
+      <div class="summary-stars" id="todayStars">0 / 37 Stars</div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="todayProgress"></div>
+    </div>
+
+    <div class="percent" id="todayPercent">0%</div>
+
+    <div class="encouragement" id="todayMessage">
+      Every little step helps you shine! ✨
+    </div>
+
+  </div>
+
+  <div class="action-row">
+    <button class="action-btn" id="selectAllBtn">
+      ✓ SELECT ALL
+    </button>
+
+    <button class="action-btn clear" id="clearAllBtn">
+      CLEAR ALL
+    </button>
+  </div>
+
+  <div id="checklistContainer"></div>
+
+</section>
+
+<!-- PROGRESS -->
+
+<section class="page" id="progress">
+
+  <div class="journey">
+
+    <h2>⭐ 7-Day Star Journey</h2>
+
+    <div class="star-journey" id="starJourney"></div>
+
+  </div>
+
+  <div id="progressCards"></div>
+
+</section>
+
+<!-- REWARD -->
+
+<section class="page" id="reward">
+
+  <div class="reward-box">
+
+    <h2>🎁 Choose Your Reward</h2>
+
+    <div class="reward-options">
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Movie Night">
+        <span>🎬 Movie Night</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Ice Cream Date">
+        <span>🍦 Ice Cream Date</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Special Family Outing">
+        <span>👨‍👩‍👧 Special Family Outing</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Explore a New Place">
+        <span>🗺️ Explore a New Place</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Weekend Getaway">
+        <span>🏝️ Weekend Getaway</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="Special Parent–Child Day">
+        <span>💗 Special Parent–Child Day</span>
+      </label>
+
+      <label class="reward-option">
+        <input type="radio" name="reward" value="My Own Reward">
+        <span>✨ My Own Reward</span>
+      </label>
+
+    </div>
+
+    <div class="selected-reward" id="selectedReward">
+      Choose a reward above 💕
+    </div>
+
+    <div class="weekly-progress">
+      <strong id="weeklyStars">0 Stars</strong>
+      <span>earned across the recent 7 days</span>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="footer">
+  Made with love for Alisha 🌸✨
+</div>
+
+</main>
+
+<!-- VIEW MODAL -->
+
+<div class="modal-backdrop" id="viewModal">
+
+  <div class="modal">
+
     <div class="modal-header">
-      <h2 id="modalTitle">
-        Daily Checklist
-      </h2>
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ×
+
+      <div class="modal-title" id="modalTitle">
+        Daily Details
+      </div>
+
+      <button class="close-btn" id="closeModal" aria-label="Close">
+        ✕
       </button>
+
     </div>
-    <div id="modalBody"></div>
+
+    <div id="modalContent"></div>
+
   </div>
+
 </div>
+
 <script>
-/* =====================================================
-   TASKS
-===================================================== */
-const BEFORE_SCHOOL = [
-  "Wake up",
-  "Make the bed",
-  "Go to the toilet",
-  "Brush teeth",
-  "Face wash + quick shower",
-  "Get dressed",
-  "Apply moisturizer + sunblock",
-  "Tie hair",
-  "Eat breakfast",
-  "Put on shoes & socks",
-  "Take vitamins",
-  "Wear your specs",
-  "Pack school bag",
-  "Make sure everything is ready before leaving"
-];
-const AFTER_SCHOOL = [
-  "Put school bag away",
-  "Keep shoes on the rack",
-  "Change clothes",
-  "Put clothes in the laundry",
-  "Wash hands",
-  "Eat a healthy snack",
-  "Relax / play for some time",
-  "Outdoor play",
-  "Dance or badminton practice",
-  "Take a break",
-  "Complete homework"
-];
-const BEFORE_BED = [
-  "Tidy up your area",
-  "Put toys & belongings away",
-  "Take a bath or shower",
-  "Put pajamas on",
-  "Eat dinner",
-  "Brush teeth",
-  "Wash face",
-  "Pack school bag for tomorrow",
-  "Choose clothes for tomorrow",
-  "Read a bedtime story / read for 10 minutes",
-  "Put in eye drops",
-  "Get into bed"
-];
-const ALL_TASKS = [
-  ...BEFORE_SCHOOL,
-  ...AFTER_SCHOOL,
-  ...BEFORE_BED
-];
-const TOTAL_TASKS = ALL_TASKS.length;
-const STORAGE_KEY =
-  "alishaChecklistV2";
-let data = loadData();
-/* =====================================================
-   DATE
-===================================================== */
-function localDateKey(date = new Date()) {
-  const y =
-    date.getFullYear();
-  const m =
-    String(date.getMonth() + 1)
-      .padStart(2, "0");
-  const d =
-    String(date.getDate())
-      .padStart(2, "0");
-  return `${y}-${m}-${d}`;
-}
-function formatDate(key) {
-  const date =
-    new Date(key + "T12:00:00");
-  return date.toLocaleDateString(
-    "en-US",
-    {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    }
-  );
-}
-/* =====================================================
-   LOAD / SAVE
-===================================================== */
-function loadData() {
-  try {
-    const saved =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-    if (!saved) {
-      return {};
-    }
-    const parsed =
-      JSON.parse(saved);
-    return parsed &&
-      typeof parsed === "object"
-      ? parsed
-      : {};
-  } catch (error) {
-    return {};
+"use strict";
+
+/*
+  ALISHA'S DAILY CHECKLIST
+  ------------------------
+  Security/design notes:
+  - No external JavaScript.
+  - No external images.
+  - No network requests.
+  - No fetch(), XMLHttpRequest, WebSocket or analytics.
+  - No passwords or API keys.
+  - Checklist data is stored only in browser localStorage.
+*/
+
+const STORAGE_KEY = "alishaChecklistV2";
+
+const SECTIONS = [
+  {
+    title: "BEFORE SCHOOL",
+    emoji: "🌸",
+    tasks: [
+      "Wake up",
+      "Make the bed",
+      "Go to the toilet",
+      "Brush teeth",
+      "Face wash + quick shower",
+      "Get dressed",
+      "Apply moisturizer + sunblock",
+      "Tie hair",
+      "Eat breakfast",
+      "Put on shoes & socks",
+      "Take vitamins",
+      "Wear your specs",
+      "Pack school bag",
+      "Make sure everything is ready before leaving"
+    ]
+  },
+  {
+    title: "AFTER SCHOOL",
+    emoji: "🌈",
+    tasks: [
+      "Put school bag away",
+      "Keep shoes on the rack",
+      "Change clothes",
+      "Put clothes in the laundry",
+      "Wash hands",
+      "Eat a healthy snack",
+      "Relax / play for some time",
+      "Outdoor play",
+      "Dance or badminton practice",
+      "Take a break",
+      "Complete homework"
+    ]
+  },
+  {
+    title: "BEFORE BED",
+    emoji: "🌙",
+    tasks: [
+      "Tidy up your area",
+      "Put toys & belongings away",
+      "Take a bath or shower",
+      "Put pajamas on",
+      "Eat dinner",
+      "Brush teeth",
+      "Wash face",
+      "Pack school bag for tomorrow",
+      "Choose clothes for tomorrow",
+      "Read a bedtime story / read for 10 minutes",
+      "Put in eye drops",
+      "Get into bed"
+    ]
   }
+];
+
+const TOTAL_TASKS = SECTIONS.reduce(
+  (total, section) => total + section.tasks.length,
+  0
+);
+
+const MESSAGES = [
+  {
+    min: 0,
+    text: "Let's get started! Every little step helps you shine. ✨"
+  },
+  {
+    min: 20,
+    text: "Great start! Keep going, superstar! 🌟"
+  },
+  {
+    min: 40,
+    text: "You're doing amazing! Keep shining! 💕"
+  },
+  {
+    min: 60,
+    text: "Wow! You're making fantastic progress! 🌈"
+  },
+  {
+    min: 80,
+    text: "Almost there! You're doing brilliantly! ⭐"
+  },
+  {
+    min: 100,
+    text: "Amazing! You completed your checklist! 🎉💖"
+  }
+];
+
+let appData = loadData();
+let currentViewDate = null;
+
+/* ---------- Date helpers ---------- */
+
+function getDateKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
-function saveData() {
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
+
+function formatDate(dateKey) {
+  const parts = dateKey.split("-");
+
+  if (parts.length !== 3) {
+    return dateKey;
+  }
+
+  const date = new Date(
+    Number(parts[0]),
+    Number(parts[1]) - 1,
+    Number(parts[2])
   );
-}
-/* =====================================================
-   CLEAN OLD DATA
-===================================================== */
-function cleanAllSavedData() {
-  Object.keys(data).forEach(key => {
-    if (
-      !data[key] ||
-      typeof data[key] !== "object"
-    ) {
-      data[key] = {
-        completed: []
-      };
-    }
-    if (
-      !Array.isArray(
-        data[key].completed
-      )
-    ) {
-      data[key].completed = [];
-    }
-    data[key].completed = [
-      ...new Set(
-        data[key].completed
-          .map(Number)
-          .filter(
-            index =>
-              Number.isInteger(index) &&
-              index >= 0 &&
-              index < TOTAL_TASKS
-          )
-      )
-    ].sort(
-      (a, b) => a - b
-    );
+
+  return date.toLocaleDateString(undefined, {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
   });
-  saveData();
 }
-/* =====================================================
-   GET TODAY DATA
-===================================================== */
-function getTodayData() {
-  const today =
-    localDateKey();
-  /*
-    Each date has its own separate record.
-    Therefore a brand-new date automatically
-    starts with zero completed tasks.
-  */
-  if (!data[today]) {
-    data[today] = {
-      completed: []
-    };
-    saveData();
+
+function getRecentDateKeys(count = 7) {
+  const keys = [];
+
+  for (let i = 0; i < count; i++) {
+    const date = new Date();
+
+    date.setHours(12, 0, 0, 0);
+    date.setDate(date.getDate() - i);
+
+    keys.push(getDateKey(date));
   }
-  if (
-    !Array.isArray(
-      data[today].completed
-    )
-  ) {
-    data[today].completed = [];
-  }
-  /* Safety cleanup */
-  data[today].completed = [
-    ...new Set(
-      data[today].completed
-        .map(Number)
-        .filter(
-          index =>
-            Number.isInteger(index) &&
-            index >= 0 &&
-            index < TOTAL_TASKS
-        )
-    )
-  ].sort(
-    (a, b) => a - b
-  );
-  return data[today];
+
+  return keys;
 }
-/* =====================================================
-   COUNT COMPLETED
-===================================================== */
-function completedCount(dayData) {
-  if (
-    !dayData ||
-    !Array.isArray(
-      dayData.completed
-    )
-  ) {
-    return 0;
+
+/* ---------- Storage ---------- */
+
+function loadData() {
+  let data = {
+    days: {},
+    reward: ""
+  };
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+      const parsed = JSON.parse(saved);
+
+      if (parsed && typeof parsed === "object") {
+        data = {
+          days:
+            parsed.days &&
+            typeof parsed.days === "object"
+              ? parsed.days
+              : {},
+          reward:
+            typeof parsed.reward === "string"
+              ? parsed.reward
+              : ""
+        };
+      }
+    }
+  } catch (error) {
+    /*
+      If storage is unavailable/corrupt, the app simply starts fresh.
+      No data is sent anywhere.
+    */
   }
-  return new Set(
-    dayData.completed.filter(
-      index =>
-        Number.isInteger(index) &&
-        index >= 0 &&
-        index < TOTAL_TASKS
-    )
-  ).size;
+
+  cleanupOldDays(data);
+
+  return data;
 }
-/* =====================================================
-   PERCENTAGE
-===================================================== */
-function percentage(dayData) {
-  const count =
-    Math.min(
-      completedCount(dayData),
-      TOTAL_TASKS
+
+function saveData() {
+  cleanupOldDays(appData);
+
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(appData)
     );
+  } catch (error) {
+    /*
+      Storage errors are intentionally ignored so the checklist
+      remains usable in the current session.
+    */
+  }
+}
+
+function cleanupOldDays(data) {
+  const recentKeys = getRecentDateKeys(7);
+
+  Object.keys(data.days).forEach(key => {
+    if (!recentKeys.includes(key)) {
+      delete data.days[key];
+    }
+  });
+}
+
+function getDayData(dateKey) {
+  if (!appData.days[dateKey]) {
+    appData.days[dateKey] = {
+      checked: {}
+    };
+  }
+
+  if (
+    !appData.days[dateKey].checked ||
+    typeof appData.days[dateKey].checked !== "object"
+  ) {
+    appData.days[dateKey].checked = {};
+  }
+
+  return appData.days[dateKey];
+}
+
+/* ---------- Checklist ---------- */
+
+function getAllTaskIds() {
+  const ids = [];
+
+  SECTIONS.forEach((section, sectionIndex) => {
+    section.tasks.forEach((task, taskIndex) => {
+      ids.push(`${sectionIndex}-${taskIndex}`);
+    });
+  });
+
+  return ids;
+}
+
+function getCheckedCount(dateKey) {
+  const day = getDayData(dateKey);
+
+  return getAllTaskIds().filter(
+    id => day.checked[id] === true
+  ).length;
+}
+
+function getPercentage(dateKey) {
+  const count = getCheckedCount(dateKey);
+
   return Math.round(
     (count / TOTAL_TASKS) * 100
   );
 }
-/* =====================================================
-   ENCOURAGING MESSAGE
-===================================================== */
+
 function getMessage(percent) {
-  if (percent === 0) {
-    return "Let's get started! 🌸";
-  }
-  if (percent < 25) {
-    return "Every little step counts! 💕";
-  }
-  if (percent < 50) {
-    return "You're doing great! Keep going! 🌈";
-  }
-  if (percent < 70) {
-    return "Wow! You're making wonderful progress! ⭐";
-  }
-  if (percent < 80) {
-    return "Almost there! You've got this! 🦋";
-  }
-  if (percent < 100) {
-    return "Amazing work! Just a little more! ✨";
-  }
-  return "🌟 AMAZING! You completed everything! 🌟";
-}
-/* =====================================================
-   RAINBOW STARS
-===================================================== */
-function rainbowStars(count) {
-  const stars = [
-    "⭐",
-    "🌟",
-    "✨",
-    "💛",
-    "💖",
-    "💜",
-    "🩷",
-    "💙",
-    "💚",
-    "🌟",
-    "⭐",
-    "✨"
-  ];
-  const number =
-    Math.min(
-      Math.max(count, 0),
-      12
-    );
-  return Array.from(
-    { length: number },
-    (_, i) =>
-      stars[i % stars.length]
-  ).join(" ");
-}
-/* =====================================================
-   5 STAR VISUAL
-===================================================== */
-function fiveStarVisual(count) {
-  const filled =
-    count === 0
-      ? 0
-      : Math.min(
-          5,
-          Math.ceil(
-            (count / TOTAL_TASKS) * 5
-          )
-        );
-  let output = "";
-  for (
-    let i = 0;
-    i < 5;
-    i++
-  ) {
-    output +=
-      i < filled
-        ? "🌟"
-        : "☆";
-  }
-  return output;
-}
-/* =====================================================
-   RENDER TODAY
-===================================================== */
-function renderToday() {
-  const today =
-    getTodayData();
-  document.getElementById(
-    "todayDate"
-  ).textContent =
-    formatDate(
-      localDateKey()
-    );
-  renderTaskGroup(
-    "beforeSchoolTasks",
-    BEFORE_SCHOOL,
-    0
-  );
-  renderTaskGroup(
-    "afterSchoolTasks",
-    AFTER_SCHOOL,
-    BEFORE_SCHOOL.length
-  );
-  renderTaskGroup(
-    "beforeBedTasks",
-    BEFORE_BED,
-    BEFORE_SCHOOL.length +
-    AFTER_SCHOOL.length
-  );
-  updateProgress();
-}
-/* =====================================================
-   RENDER TASK GROUP
-===================================================== */
-function renderTaskGroup(
-  elementId,
-  tasks,
-  startIndex
-) {
-  const container =
-    document.getElementById(
-      elementId
-    );
-  container.innerHTML = "";
-  const today =
-    getTodayData();
-  tasks.forEach(
-    (task, localIndex) => {
-      const index =
-        startIndex +
-        localIndex;
-      const isCompleted =
-        today.completed.includes(
-          index
-        );
-      const taskElement =
-        document.createElement(
-          "div"
-        );
-      taskElement.className =
-        "task" +
-        (
-          isCompleted
-            ? " completed"
-            : ""
-        );
-      taskElement.onclick =
-        () => toggleTask(index);
-      const check =
-        document.createElement(
-          "div"
-        );
-      check.className =
-        "task-check";
-      check.textContent =
-        isCompleted
-          ? "✓"
-          : "";
-      const text =
-        document.createElement(
-          "div"
-        );
-      text.className =
-        "task-text";
-      text.textContent =
-        task;
-      taskElement.appendChild(check);
-      taskElement.appendChild(text);
-      container.appendChild(
-        taskElement
-      );
+  let message = MESSAGES[0].text;
+
+  MESSAGES.forEach(item => {
+    if (percent >= item.min) {
+      message = item.text;
     }
-  );
+  });
+
+  return message;
 }
-/* =====================================================
-   TOGGLE INDIVIDUAL TASK
-===================================================== */
-function toggleTask(index) {
-  const today =
-    getTodayData();
-  today.completed = [
-    ...new Set(
-      today.completed
-    )
-  ];
-  const position =
-    today.completed.indexOf(
-      index
-    );
-  if (position >= 0) {
-    today.completed.splice(
-      position,
-      1
-    );
-  } else {
-    today.completed.push(
-      index
-    );
-  }
-  today.completed = [
-    ...new Set(
-      today.completed.filter(
-        taskIndex =>
-          Number.isInteger(taskIndex) &&
-          taskIndex >= 0 &&
-          taskIndex < TOTAL_TASKS
-      )
-    )
-  ].sort(
-    (a, b) => a - b
-  );
-  saveData();
-  renderToday();
-  updateProgressPage();
-}
-/* =====================================================
-   SELECT ALL
-===================================================== */
-function selectAllTasks() {
-  const today =
-    getTodayData();
-  today.completed =
-    Array.from(
-      { length: TOTAL_TASKS },
-      (_, index) => index
-    );
-  saveData();
-  renderToday();
-  updateProgressPage();
-}
-/* =====================================================
-   CLEAR ALL
-===================================================== */
-function clearAllTasks() {
-  const today =
-    getTodayData();
-  today.completed = [];
-  saveData();
-  renderToday();
-  updateProgressPage();
-}
-/* =====================================================
-   TODAY PROGRESS
-===================================================== */
-function updateProgress() {
-  const today =
-    getTodayData();
-  const count =
-    Math.min(
-      completedCount(today),
-      TOTAL_TASKS
-    );
-  const percent =
-    percentage(today);
-  document.getElementById(
-    "todayPercentage"
-  ).textContent =
-    `${percent}%`;
-  document.getElementById(
-    "todayStars"
-  ).textContent =
-    rainbowStars(count);
-  document.getElementById(
-    "progressFill"
-  ).style.width =
-    `${percent}%`;
-  document.getElementById(
-    "todayMessage"
-  ).textContent =
-    getMessage(percent);
-  document.getElementById(
-    "starSummary"
-  ).textContent =
-    `⭐ ${count} / ${TOTAL_TASKS} Stars`;
-}
-/* =====================================================
-   PAGE SWITCH
-===================================================== */
-function showPage(
-  pageId,
-  button
-) {
-  document
-    .querySelectorAll(".page")
-    .forEach(page => {
-      page.classList.remove(
-        "active"
-      );
-    });
-  document
-    .getElementById(pageId)
-    .classList.add("active");
-  document
-    .querySelectorAll(".tab")
-    .forEach(tab => {
-      tab.classList.remove(
-        "active"
-      );
-    });
-  button.classList.add(
-    "active"
-  );
-  if (
-    pageId === "progress"
-  ) {
-    updateProgressPage();
-  }
-  if (
-    pageId === "reward"
-  ) {
-    updateWeeklyRewardProgress();
-  }
-}
-/* =====================================================
-   LAST 7 DAYS
-===================================================== */
-function getLastSevenDays() {
-  const dates = [];
-  const today =
-    new Date();
-  for (
-    let i = 6;
-    i >= 0;
-    i--
-  ) {
-    const date =
-      new Date(today);
-    date.setDate(
-      today.getDate() - i
-    );
-    dates.push(
-      localDateKey(date)
-    );
-  }
-  return dates;
-}
-/* =====================================================
-   DAILY MESSAGE
-===================================================== */
-function dailyMessage(
-  dateKey,
-  percent
-) {
-  const messages = [
-    "Every day is a fresh little adventure! 🌈",
-    "You are building wonderful habits! 🌸",
-    "Small steps make big achievements! ⭐",
-    "Look how much you've accomplished! 🦋",
-    "Keep shining, Alisha! ✨",
-    "You should be proud of yourself! 💕",
-    "Wonderful effort today! 🌷"
-  ];
-  let number = 0;
-  for (
-    let i = 0;
-    i < dateKey.length;
-    i++
-  ) {
-    number +=
-      dateKey.charCodeAt(i);
-  }
-  if (percent === 100) {
-    return "🌟 You completed your whole checklist! Amazing! 🌟";
-  }
-  return messages[
-    number % messages.length
-  ];
-}
-/* =====================================================
-   PROGRESS PAGE
-===================================================== */
-function updateProgressPage() {
-  renderJourney();
+
+function renderChecklist() {
   const container =
-    document.getElementById(
-      "dailyProgressList"
-    );
+    document.getElementById("checklistContainer");
+
+  const todayKey = getDateKey();
+  const day = getDayData(todayKey);
+
   container.innerHTML = "";
-  const dates =
-    getLastSevenDays().reverse();
-  dates.forEach(
-    dateKey => {
-      const dayData =
-        data[dateKey] || {
-          completed: []
-        };
-      const count =
-        Math.min(
-          completedCount(dayData),
-          TOTAL_TASKS
-        );
-      const percent =
-        percentage(dayData);
-      const card =
-        document.createElement(
-          "div"
-        );
-      card.className =
-        "daily-card";
-      const statusDone =
-        percent >= 80;
-      card.innerHTML = `
-        <div class="daily-header">
-          <div class="daily-date">
-            ${formatDate(dateKey)}
-          </div>
-          <div class="daily-status ${
-            statusDone
-              ? "status-done"
-              : "status-keep"
-          }">
-            ${
-              statusDone
-                ? "✓ DONE"
-                : "✕ KEEP GOING"
-            }
-          </div>
-        </div>
-        <div class="daily-middle">
-          <div>
-            <div class="daily-stars">
-              ${fiveStarVisual(count)}
-            </div>
-            <div class="daily-score">
-              ${count} / ${TOTAL_TASKS} Stars
-              · ${percent}%
-            </div>
-          </div>
-          <button
-            class="view-btn"
-            onclick="openView('${dateKey}')"
-          >
-            VIEW
-          </button>
-        </div>
-        <div class="daily-message">
-          ${dailyMessage(
-            dateKey,
-            percent
-          )}
-        </div>
-      `;
-      container.appendChild(
-        card
-      );
-    }
-  );
-}
-/* =====================================================
-   7 DAY STAR JOURNEY
-===================================================== */
-function renderJourney() {
-  const container =
-    document.getElementById(
-      "journeyRow"
-    );
-  container.innerHTML = "";
-  const dates =
-    getLastSevenDays();
-  dates.forEach(
-    dateKey => {
-      const dayData =
-        data[dateKey] || {
-          completed: []
-        };
-      const count =
-        Math.min(
-          completedCount(dayData),
-          TOTAL_TASKS
-        );
-      const date =
-        new Date(
-          dateKey +
-          "T12:00:00"
-        );
-      const dayName =
-        date.toLocaleDateString(
-          "en-US",
-          {
-            weekday: "short"
-          }
-        );
-      const item =
-        document.createElement(
-          "div"
-        );
-      item.className =
-        "journey-day";
-      item.innerHTML = `
-        <div class="journey-day-name">
-          ${dayName}
-        </div>
-        <div class="journey-star">
-          ${
-            count > 0
-              ? "🌟"
-              : "☆"
-          }
-        </div>
-        <div class="journey-count">
-          ${count}/${TOTAL_TASKS}
-        </div>
-      `;
-      container.appendChild(
-        item
-      );
-    }
-  );
-}
-/* =====================================================
-   VIEW
-===================================================== */
-function openView(dateKey) {
-  const dayData =
-    data[dateKey] || {
-      completed: []
-    };
-  const completed =
-    new Set(
-      dayData.completed || []
-    );
-  document.getElementById(
-    "modalTitle"
-  ).textContent =
-    formatDate(dateKey);
-  const modalBody =
-    document.getElementById(
-      "modalBody"
-    );
-  modalBody.innerHTML = "";
-  createViewSection(
-    modalBody,
-    "🌅 BEFORE SCHOOL",
-    BEFORE_SCHOOL,
-    0,
-    completed
-  );
-  createViewSection(
-    modalBody,
-    "🏡 AFTER SCHOOL",
-    AFTER_SCHOOL,
-    BEFORE_SCHOOL.length,
-    completed
-  );
-  createViewSection(
-    modalBody,
-    "🌙 BEFORE BED",
-    BEFORE_BED,
-    BEFORE_SCHOOL.length +
-    AFTER_SCHOOL.length,
-    completed
-  );
-  document
-    .getElementById(
-      "viewModal"
-    )
-    .classList.add("show");
-}
-/* =====================================================
-   VIEW SECTION
-===================================================== */
-function createViewSection(
-  parent,
-  title,
-  tasks,
-  startIndex,
-  completed
-) {
-  const section =
-    document.createElement(
-      "div"
-    );
-  section.className =
-    "view-section";
-  const heading =
-    document.createElement(
-      "h3"
-    );
-  heading.textContent =
-    title;
-  section.appendChild(
-    heading
-  );
-  tasks.forEach(
-    (task, i) => {
-      const index =
-        startIndex + i;
-      const done =
-        completed.has(index);
+
+  SECTIONS.forEach((section, sectionIndex) => {
+
+    const sectionElement =
+      document.createElement("div");
+
+    sectionElement.className = "section";
+
+    const title =
+      document.createElement("div");
+
+    title.className = "section-title";
+
+    title.innerHTML =
+      `<span class="emoji">${section.emoji}</span>
+       <span>${escapeHtml(section.title)}</span>`;
+
+    sectionElement.appendChild(title);
+
+    const list =
+      document.createElement("div");
+
+    list.className = "task-list";
+
+    section.tasks.forEach((task, taskIndex) => {
+
+      const id = `${sectionIndex}-${taskIndex}`;
+
       const row =
-        document.createElement(
-          "div"
-        );
-      row.className =
-        "view-task" +
-        (
-          done
-            ? " done"
-            : ""
-        );
-      row.innerHTML = `
-        <div class="view-check">
-          ${done ? "✓" : ""}
-        </div>
-        <div>
-          ${task}
-        </div>
-      `;
-      section.appendChild(
-        row
+        document.createElement("div");
+
+      row.className = "task";
+
+      if (day.checked[id]) {
+        row.classList.add("checked");
+      }
+
+      row.setAttribute("role", "checkbox");
+      row.setAttribute(
+        "aria-checked",
+        day.checked[id] ? "true" : "false"
       );
-    }
-  );
-  parent.appendChild(
-    section
-  );
+      row.tabIndex = 0;
+
+      row.innerHTML = `
+        <div class="checkbox">
+          ${day.checked[id] ? "✓" : ""}
+        </div>
+
+        <div class="task-text">
+          ${escapeHtml(task)}
+        </div>
+
+        <div class="star-badge">⭐</div>
+      `;
+
+      const toggle = () => {
+        toggleTask(id);
+      };
+
+      row.addEventListener("click", toggle);
+
+      row.addEventListener("keydown", event => {
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+          toggle();
+        }
+      });
+
+      list.appendChild(row);
+    });
+
+    sectionElement.appendChild(list);
+    container.appendChild(sectionElement);
+  });
 }
-/* =====================================================
-   CLOSE VIEW
-===================================================== */
+
+function toggleTask(id) {
+  const todayKey = getDateKey();
+  const day = getDayData(todayKey);
+
+  day.checked[id] = !day.checked[id];
+
+  saveData();
+  renderChecklist();
+  updateTodaySummary();
+  renderProgress();
+  renderReward();
+}
+
+/* ---------- TODAY summary ---------- */
+
+function updateTodaySummary() {
+  const todayKey = getDateKey();
+  const count = getCheckedCount(todayKey);
+  const percent = getPercentage(todayKey);
+
+  document.getElementById("todayStars").textContent =
+    `${count} / ${TOTAL_TASKS} Stars`;
+
+  document.getElementById("todayPercent").textContent =
+    `${percent}%`;
+
+  document.getElementById("todayProgress").style.width =
+    `${percent}%`;
+
+  document.getElementById("todayMessage").textContent =
+    getMessage(percent);
+}
+
+/* ---------- Select / clear ---------- */
+
+function selectAll() {
+  const todayKey = getDateKey();
+  const day = getDayData(todayKey);
+
+  getAllTaskIds().forEach(id => {
+    day.checked[id] = true;
+  });
+
+  saveData();
+  renderChecklist();
+  updateTodaySummary();
+  renderProgress();
+  renderReward();
+}
+
+function clearAll() {
+  const todayKey = getDateKey();
+  const day = getDayData(todayKey);
+
+  getAllTaskIds().forEach(id => {
+    day.checked[id] = false;
+  });
+
+  saveData();
+  renderChecklist();
+  updateTodaySummary();
+  renderProgress();
+  renderReward();
+}
+
+document
+  .getElementById("selectAllBtn")
+  .addEventListener("click", selectAll);
+
+document
+  .getElementById("clearAllBtn")
+  .addEventListener("click", clearAll);
+
+/* ---------- Progress ---------- */
+
+function renderProgress() {
+  renderStarJourney();
+
+  const container =
+    document.getElementById("progressCards");
+
+  container.innerHTML = "";
+
+  const dates = getRecentDateKeys(7);
+
+  dates.forEach(dateKey => {
+
+    const count = getCheckedCount(dateKey);
+    const percent = getPercentage(dateKey);
+
+    const card =
+      document.createElement("div");
+
+    card.className = "progress-card";
+
+    const done = percent >= 80;
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-date">
+          ${escapeHtml(formatDate(dateKey))}
+        </div>
+
+        <div class="card-stars">
+          ${count} / ${TOTAL_TASKS} ⭐
+        </div>
+      </div>
+
+      <div class="card-percent">
+        ${percent}%
+      </div>
+
+      <div class="status ${done ? "done" : "keep"}">
+        ${done ? "✓ DONE" : "✕ KEEP GOING"}
+      </div>
+
+      <div class="card-message">
+        ${escapeHtml(getMessage(percent))}
+      </div>
+
+      <button
+        class="view-btn"
+        type="button"
+        data-view-date="${escapeHtml(dateKey)}">
+        VIEW
+      </button>
+    `;
+
+    container.appendChild(card);
+  });
+
+  container
+    .querySelectorAll("[data-view-date]")
+    .forEach(button => {
+      button.addEventListener("click", () => {
+        openView(button.dataset.viewDate);
+      });
+    });
+}
+
+function renderStarJourney() {
+  const container =
+    document.getElementById("starJourney");
+
+  container.innerHTML = "";
+
+  const dates = getRecentDateKeys(7).reverse();
+
+  dates.forEach(dateKey => {
+
+    const count = getCheckedCount(dateKey);
+
+    const dateParts = dateKey.split("-");
+    const date =
+      new Date(
+        Number(dateParts[0]),
+        Number(dateParts[1]) - 1,
+        Number(dateParts[2])
+      );
+
+    const dayName =
+      date.toLocaleDateString(undefined, {
+        weekday: "short"
+      });
+
+    const item =
+      document.createElement("div");
+
+    item.className = "journey-day";
+
+    item.innerHTML = `
+      <div class="journey-star">
+        ${count > 0 ? "🌟" : "☆"}
+      </div>
+
+      <div class="journey-day-name">
+        ${escapeHtml(dayName)}
+      </div>
+
+      <div class="journey-count">
+        ${count} / ${TOTAL_TASKS}
+      </div>
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+/* ---------- View modal ---------- */
+
+function openView(dateKey) {
+  currentViewDate = dateKey;
+
+  const modal =
+    document.getElementById("viewModal");
+
+  const title =
+    document.getElementById("modalTitle");
+
+  const content =
+    document.getElementById("modalContent");
+
+  const day = getDayData(dateKey);
+
+  title.textContent =
+    formatDate(dateKey);
+
+  content.innerHTML = "";
+
+  SECTIONS.forEach((section, sectionIndex) => {
+
+    const sectionElement =
+      document.createElement("div");
+
+    sectionElement.className =
+      "modal-section";
+
+    const heading =
+      document.createElement("h3");
+
+    heading.textContent =
+      `${section.emoji} ${section.title}`;
+
+    sectionElement.appendChild(heading);
+
+    section.tasks.forEach((task, taskIndex) => {
+
+      const id = `${sectionIndex}-${taskIndex}`;
+      const complete = day.checked[id] === true;
+
+      const row =
+        document.createElement("div");
+
+      row.className = "modal-task";
+
+      row.innerHTML = `
+        <span class="modal-check ${
+          complete ? "complete" : "incomplete"
+        }">
+          ${complete ? "✓" : "○"}
+        </span>
+
+        <span>
+          ${escapeHtml(task)}
+        </span>
+      `;
+
+      sectionElement.appendChild(row);
+    });
+
+    content.appendChild(sectionElement);
+  });
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
 function closeModal() {
   document
-    .getElementById(
-      "viewModal"
-    )
-    .classList.remove(
-      "show"
-    );
+    .getElementById("viewModal")
+    .classList.remove("open");
+
+  document.body.style.overflow = "";
 }
+
 document
-  .getElementById(
-    "viewModal"
-  )
-  .addEventListener(
-    "click",
-    function(event) {
-      if (
-        event.target === this
-      ) {
-        closeModal();
-      }
+  .getElementById("closeModal")
+  .addEventListener("click", closeModal);
+
+document
+  .getElementById("viewModal")
+  .addEventListener("click", event => {
+    if (event.target.id === "viewModal") {
+      closeModal();
     }
-  );
-/* =====================================================
-   REWARD
-===================================================== */
-function loadReward() {
-  const savedReward =
-    localStorage.getItem(
-      "alishaSelectedReward"
-    );
-  if (savedReward) {
-    const radio =
-      document.querySelector(
-        `input[name="reward"][value="${CSS.escape(savedReward)}"]`
-      );
-    if (radio) {
-      radio.checked = true;
-    }
-    document.getElementById(
-      "selectedReward"
-    ).textContent =
-      `🎁 Your reward: ${savedReward}`;
+  });
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeModal();
   }
-  updateWeeklyRewardProgress();
+});
+
+/* ---------- Rewards ---------- */
+
+function renderReward() {
+  const selected =
+    document.querySelector(
+      'input[name="reward"]:checked'
+    );
+
+  const display =
+    document.getElementById("selectedReward");
+
+  if (selected) {
+    display.textContent =
+      `Your reward: ${selected.value} 💕`;
+  } else {
+    display.textContent =
+      "Choose a reward above 💕";
+  }
+
+  const dates = getRecentDateKeys(7);
+
+  const weeklyStars =
+    dates.reduce(
+      (total, dateKey) =>
+        total + getCheckedCount(dateKey),
+      0
+    );
+
+  document.getElementById("weeklyStars").textContent =
+    `${weeklyStars} Stars`;
 }
+
 document
-  .querySelectorAll(
-    'input[name="reward"]'
-  )
-  .forEach(
-    radio => {
-      radio.addEventListener(
-        "change",
-        function() {
-          localStorage.setItem(
-            "alishaSelectedReward",
-            this.value
-          );
-          document.getElementById(
-            "selectedReward"
-          ).textContent =
-            `🎁 Your reward: ${this.value}`;
-        }
-      );
-    }
-  );
-/* =====================================================
-   WEEKLY REWARD PROGRESS
-===================================================== */
-function updateWeeklyRewardProgress() {
-  const dates =
-    getLastSevenDays();
-  let totalStars = 0;
-  dates.forEach(
-    dateKey => {
-      const dayData =
-        data[dateKey] || {
-          completed: []
-        };
-      totalStars +=
-        Math.min(
-          completedCount(dayData),
-          TOTAL_TASKS
+  .querySelectorAll('input[name="reward"]')
+  .forEach(input => {
+
+    input.addEventListener("change", () => {
+
+      appData.reward = input.value;
+
+      saveData();
+      renderReward();
+    });
+  });
+
+function restoreReward() {
+  if (!appData.reward) {
+    renderReward();
+    return;
+  }
+
+  const input =
+    document.querySelector(
+      `input[name="reward"][value="${CSS.escape(appData.reward)}"]`
+    );
+
+  if (input) {
+    input.checked = true;
+  }
+
+  renderReward();
+}
+
+/* ---------- Tabs ---------- */
+
+document
+  .querySelectorAll(".tab")
+  .forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+      const pageName =
+        tab.dataset.page;
+
+      document
+        .querySelectorAll(".tab")
+        .forEach(item =>
+          item.classList.remove("active")
         );
-    }
-  );
-  const maximum =
-    TOTAL_TASKS * 7;
-  document.getElementById(
-    "weeklyProgress"
-  ).textContent =
-    `This week's progress: ${totalStars} / ${maximum} stars`;
-}
-/* =====================================================
-   KEEP ONLY LAST 7 DAYS
-===================================================== */
-function removeOldDays() {
-  const dates =
-    getLastSevenDays();
-  const allowed =
-    new Set(dates);
-  Object.keys(data).forEach(
-    key => {
-      if (
-        !allowed.has(key)
-      ) {
-        delete data[key];
+
+      document
+        .querySelectorAll(".page")
+        .forEach(page =>
+          page.classList.remove("active")
+        );
+
+      tab.classList.add("active");
+
+      document
+        .getElementById(pageName)
+        .classList.add("active");
+
+      if (pageName === "progress") {
+        renderProgress();
       }
-    }
-  );
-  saveData();
+
+      if (pageName === "reward") {
+        renderReward();
+      }
+    });
+  });
+
+/* ---------- Date display ---------- */
+
+function updateDateDisplay() {
+  document.getElementById("todayDate").textContent =
+    new Date().toLocaleDateString(undefined, {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
 }
-/* =====================================================
-   START APP
-===================================================== */
-cleanAllSavedData();
-removeOldDays();
-renderToday();
-updateProgressPage();
-loadReward();
+
+/* ---------- Safe text handling ---------- */
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+/* ---------- Start application ---------- */
+
+updateDateDisplay();
+renderChecklist();
+updateTodaySummary();
+renderProgress();
+restoreReward();
+
+/*
+  If the page remains open across midnight,
+  refresh the visible date/checklist automatically.
+*/
+let initialDateKey = getDateKey();
+
+setInterval(() => {
+
+  const newDateKey = getDateKey();
+
+  if (newDateKey !== initialDateKey) {
+    initialDateKey = newDateKey;
+
+    appData = loadData();
+
+    updateDateDisplay();
+    renderChecklist();
+    updateTodaySummary();
+    renderProgress();
+    restoreReward();
+  }
+
+}, 60000);
 </script>
+
 </body>
 </html>
