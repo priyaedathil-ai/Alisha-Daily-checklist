@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alisha's Daily Checklist</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #fff5fb, #f3efff);
+  color: #4d3b59;
+}
+
+.app {
+  max-width: 700px;
+  margin: auto;
+  min-height: 100vh;
+  padding-bottom: 30px;
+}
+
+.header {
+  text-align: center;
+  padding: 28px 18px 18px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #76528a;
+}
+
+.header p {
+  margin: 8px 0 0;
+  color: #8f789b;
+}
+
+.tabs {
+  display: flex;
+  margin: 0 15px 20px;
+  background: white;
+  border-radius: 18px;
+  padding: 6px;
+  box-shadow: 0 4px 15px rgba(120, 80, 140, 0.12);
+}
+
+.tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 5px;
+  border-radius: 14px;
+  color: #80668c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #eadcf5;
+  color: #68477c;
+}
+
+.page {
+  display: none;
+  padding: 0 15px;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 22px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 5px 18px rgba(120, 80, 140, 0.10);
+}
+
+.date {
+  text-align: center;
+  font-size: 16px;
+  color: #9279a0;
+  margin-bottom: 18px;
+}
+
+.progress-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.progress-number {
+  font-size: 34px;
+  font-weight: 700;
+  color: #8c5aa5;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #eee5f3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #d8b5ed, #a978c2);
+  border-radius: 20px;
+  transition: width .3s ease;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #76528a;
+  margin: 20px 0 10px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 5px;
+  border-bottom: 1px solid #f1eaf4;
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.task input {
+  width: 22px;
+  height: 22px;
+  accent-color: #a978c2;
+}
+
+.task label {
+  font-size: 16px;
+  flex: 1;
+}
+
+.task input:checked + label {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.message {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: #80548f;
+  padding-top: 12px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.history-item:hover {
+  background: #faf4fd;
+}
+
+.history-date {
+  font-weight: 600;
+}
+
+.history-score {
+  color: #8c5aa5;
+  font-weight: 700;
+}
+
+.reward {
+  text-align: center;
+}
+
+.stars {
+  font-size: 40px;
+  letter-spacing: 5px;
+  margin: 15px 0;
+}
+
+.reward-score {
+  font-size: 36px;
+  font-weight: 700;
+  color: #8c5aa5;
+}
+
+.small {
+  color: #9985a1;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.empty {
+  text-align: center;
+  color: #9d8da4;
+  padding: 25px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #aa98b0;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+  <h1>🌸 Alisha's Daily Checklist 🌸</h1>
+  <p>Small steps every day ✨</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showPage('today', this)">🏠 Today</button>
+  <button class="tab" onclick="showPage('history', this)">📅 History</button>
+  <button class="tab" onclick="showPage('reward', this)">🏆 Reward</button>
+</nav>
+
+<!-- TODAY -->
+
+<section id="today" class="page active">
+
+  <div class="card">
+
+    <div class="date" id="todayDate"></div>
+
+    <div class="progress-area">
+      <div class="progress-number" id="progressNumber">0%</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="message" id="message">
+        Let's have a wonderful day! 🌈
+      </div>
+    </div>
+
+    <div class="section-title">🌅 Morning</div>
+
+    <div class="task">
+      <input type="checkbox" data-task="wake">
+      <label>Wake up and get ready</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="breakfast">
+      <label>Have breakfast</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="school">
+      <label>Get ready for school</label>
+    </div>
+
+    <div class="section-title">📚 School & Learning</div>
+
+    <div class="task">
+      <input type="checkbox" data-task="homework">
+      <label>Complete school work</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="reading">
+      <label>Read a book</label>
+    </div>
+
+    <div class="section-title">🎨 Activities & Play</div>
+
+    <div class="task">
+      <input type="checkbox" data-task="activity">
+      <label>Complete today's activity</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="exercise">
+      <label>Exercise / cycling / outdoor play</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="play">
+      <label>Free play time</label>
+    </div>
+
+    <div class="section-title">🌙 Evening</div>
+
+    <div class="task">
+      <input type="checkbox" data-task="dinner">
+      <label>Have dinner</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" data-task="night">
+      <label>Get ready for bed</label>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section id="history" class="page">
+
+  <div class="card">
+
+    <h2>📅 Last 7 Days</h2>
+
+    <div id="historyList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- REWARD -->
+
+<section id="reward" class="page">
+
+  <div class="card reward">
+
+    <h2>🏆 Weekly Reward</h2>
+
+    <div class="stars" id="stars">☆☆☆☆☆</div>
+
+    <div class="reward-score" id="rewardScore">0%</div>
+
+    <p id="rewardMessage">
+      Your week is just beginning! 🌸
+    </p>
+
+    <div class="small">
+      Keep going, Alisha! Every little step counts. 💕
+    </div>
+
+  </div>
+
+</section>
+
+<div class="footer">
+  Made with love for Alisha 🌸
+</div>
+
+</div>
+
+
+<script>
+
+const tasks = document.querySelectorAll(".task input");
+
+function getTodayKey() {
+  const date = new Date();
+  return date.toISOString().split("T")[0];
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString + "T00:00:00");
+  return date.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+}
+
+function getData() {
+  return JSON.parse(localStorage.getItem("alishaChecklist") || "{}");
+}
+
+function saveData(data) {
+  localStorage.setItem("alishaChecklist", JSON.stringify(data));
+}
+
+function loadToday() {
+
+  const data = getData();
+  const today = getTodayKey();
+
+  if (!data[today]) {
+    data[today] = {};
+    saveData(data);
+  }
+
+  tasks.forEach(task => {
+    task.checked = data[today][task.dataset.task] === true;
+  });
+
+  updateProgress();
+}
+
+function updateProgress() {
+
+  const data = getData();
+  const today = getTodayKey();
+
+  if (!data[today]) data[today] = {};
+
+  tasks.forEach(task => {
+    data[today][task.dataset.task] = task.checked;
+  });
+
+  saveData(data);
+
+  const total = tasks.length;
+  const completed = [...tasks].filter(t => t.checked).length;
+
+  const percentage = Math.round((completed / total) * 100);
+
+  document.getElementById("progressNumber").textContent =
+    percentage + "%";
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  let message = "Let's have a wonderful day! 🌈";
+
+  if (percentage === 100) {
+    message = "Amazing! You completed everything! 🎉🌟";
+  } else if (percentage >= 75) {
+    message = "Fantastic work! Keep going! 💕";
+  } else if (percentage >= 50) {
+    message = "Great job! You're doing really well! 🌸";
+  } else if (percentage >= 25) {
+    message = "You're off to a great start! ✨";
+  }
+
+  document.getElementById("message").textContent = message;
+
+  updateHistory();
+  updateReward();
+}
+
+tasks.forEach(task => {
+  task.addEventListener("change", updateProgress);
+});
+
+
+function showPage(pageId, button) {
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.remove("active");
+  });
+
+  document.getElementById(pageId).classList.add("active");
+  button.classList.add("active");
+
+  if (pageId === "history") {
+    updateHistory();
+  }
+
+  if (pageId === "reward") {
+    updateReward();
+  }
+}
+
+
+function updateHistory() {
+
+  const data = getData();
+  const list = document.getElementById("historyList");
+
+  const dates = Object.keys(data)
+    .sort()
+    .reverse()
+    .slice(0, 7);
+
+  if (dates.length === 0) {
+    list.innerHTML =
+      '<div class="empty">No history yet 🌸</div>';
+    return;
+  }
+
+  list.innerHTML = "";
+
+  dates.forEach(date => {
+
+    const values = Object.values(data[date]);
+
+    const completed = values.filter(v => v === true).length;
+
+    const percentage = tasks.length
+      ? Math.round((completed / tasks.length) * 100)
+      : 0;
+
+    const item = document.createElement("div");
+
+    item.className = "history-item";
+
+    item.innerHTML = `
+      <div class="history-date">
+        ${new Date(date + "T00:00:00").toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "short"
+        })}
+      </div>
+
+      <div class="history-score">
+        ${percentage}%
+      </div>
+    `;
+
+    list.appendChild(item);
+
+  });
+}
+
+
+function updateReward() {
+
+  const data = getData();
+
+  const dates = Object.keys(data)
+    .sort()
+    .reverse()
+    .slice(0, 7);
+
+  if (dates.length === 0) return;
+
+  let total = 0;
+
+  dates.forEach(date => {
+
+    const completed =
+      Object.values(data[date]).filter(v => v === true).length;
+
+    total += tasks.length
+      ? (completed / tasks.length) * 100
+      : 0;
+
+  });
+
+  const average = Math.round(total / dates.length);
+
+  document.getElementById("rewardScore").textContent =
+    average + "%";
+
+  const starCount = Math.round(average / 20);
+
+  document.getElementById("stars").textContent =
+    "★".repeat(starCount) +
+    "☆".repeat(5 - starCount);
+
+  let message = "Your week is just beginning! 🌸";
+
+  if (average >= 90) {
+    message = "WOW! You are a super star! 🌟";
+  } else if (average >= 75) {
+    message = "Fantastic week! Keep shining! ✨";
+  } else if (average >= 50) {
+    message = "Great effort! Keep going! 💕";
+  } else {
+    message = "Every little step counts! 🌈";
+  }
+
+  document.getElementById("rewardMessage").textContent =
+    message;
+}
+
+
+document.getElementById("todayDate").textContent =
+  formatDate(getTodayKey());
+
+loadToday();
+updateHistory();
+updateReward();
+
+</script>
+
+</body>
+</html>
